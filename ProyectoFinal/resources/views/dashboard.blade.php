@@ -34,7 +34,7 @@
                     <div class="py-2">
                         <div class="col s8 ">
                             <div class="border-4 border-black py-2 px-2 rounded-[30px] shadow-lg">
-                                <div class="rounded-[30px] overflow-hidden shadow-lg py-4 bg-[#cbd5e1] opacity-100 border-4 border-black">
+                                <div class="rounded-[30px] overflow-hidden shadow-lg py-4 bg-[#cbd5e1] opacity-50 border-4 border-black">
                                     <div class="px-6 py-4">
                                         <div class="font-bold text-6xl mb-2 text-[#b91c1c] ">EL<br> MANUAL</br></div>
                                         <p class="text-[#b91c1c] text-lg">
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col s4 ">
                             <div class="border-4 border-black py-2 px-2 rounded-[30px] shadow-lg">
-                                <div class="rounded-[30px] overflow-hidden shadow-lg py-4 bg-[#fef08a] opacity-100 border-4 border-black">
+                                <div class="rounded-[30px] overflow-hidden shadow-lg py-4 bg-[#fef08a] opacity-50 border-4 border-black">
                                     <div class="px-6 py-4">
                                         <div class="font-bold text-6xl mb-2 text-[#b91c1c]">Escribir<br> consejo</div>
                                         <p class=<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,7 +63,7 @@
                     <div class="py-12">
                         <div class="col s7">
                             <div class="border-4 border-black py-2 px-2 rounded-[30px] shadow-lg">
-                                <div class="rounded-[30px] overflow-hidden shadow-lg py-4 bg-[#f0abfc] opacity-100 border-4 border-black">
+                                <div class="rounded-[30px] overflow-hidden shadow-lg py-4 bg-[#f0abfc] opacity-50 border-4 border-black">
                                     <div class="px-6 py-4">
                                         <div class="font-bold text-6xl mb-2 text-[#b91c1c]">LA PROFEDEX</div>
                                         <p class="text-[#b91c1c] text-lg">
@@ -75,7 +75,7 @@
                         </div>
                         <div class="col s5">
                             <div class="border-4 border-black py-2 px-2 rounded-[30px] shadow-lg">
-                                <div class="rounded-[30px] overflow-hidden shadow-lg py-4 bg-[#5eead4] opacity-100 border-4 border-black">
+                                <div class="rounded-[30px] overflow-hidden shadow-lg py-4 bg-[#5eead4] opacity-50 border-4 border-black">
                                     <div class="px-6 py-4">
                                         <div class="font-bold text-6xl mb-2 text-[#b91c1c]">MIS CONSEJOS</div>
                                         <p class="text-[#b91c1c] text-lg">
