@@ -1,6 +1,6 @@
-<nav x-data="{ open: false }" class="bg-[#0f172a] border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-[#121212] border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -12,12 +12,39 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @if(@Auth::user()->hasRole('Alumno'))
                     <x-nav-link class="text-white" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Inicio') }}
                     </x-nav-link>
-                    <x-nav-link class="text-white" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link class="text-white" :href="route('escribeunconsejo')" :active="request()->routeIs('escribeunconsejo')">
                         {{ __('Postear') }}
                     </x-nav-link>
+                    @endif
+                    @if(@Auth::user()->hasRole('Admin'))
+                    <x-nav-link class="text-white" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Inicio') }}
+                    </x-nav-link>
+                    <x-nav-link class="text-white" :href="route('escribeunconsejo')" :active="request()->routeIs('escribeunconsejo')">
+                        {{ __('Postear') }}
+                    </x-nav-link>
+                    <x-nav-link class="text-white" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Solicitudes') }}
+                    </x-nav-link>
+                    <x-nav-link class="text-white" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Consejos') }}
+                    </x-nav-link>
+                    @endif
+                    @if(@Auth::user()->hasRole('Moderador'))
+                    <x-nav-link class="text-white" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Inicio') }}
+                    </x-nav-link>
+                    <x-nav-link class="text-white" :href="route('escribeunconsejo')" :active="request()->routeIs('escribeunconsejo')">
+                        {{ __('Postear') }}
+                    </x-nav-link>
+                    <x-nav-link class="text-white" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Solicitudes') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 

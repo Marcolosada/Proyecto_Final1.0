@@ -14,7 +14,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Tangerine&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
@@ -24,6 +23,17 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Tangerine&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Tangerine&display=swap');
+
+        .letra {
+            font-family: 'Carter One', cursive;
+        }
+
+        .textindfo {
+            font-family: 'Tangerine', cursive;
         }
     </style>
 </head>
@@ -58,9 +68,9 @@
                             <div class="border-4 border-black py-2 px-2 rounded-[30px] shadow-lg">
                                 <div class="rounded-[30px] overflow-hidden shadow-lg py-4 bg-[#cbd5e1] opacity-70 border-4 border-black">
                                     <div class="px-6 py-4">
-                                        <div class="font-bold text-6xl mb-2 text-[#b91c1c] "><a href="{{ url('/login') }}">INICIA TU SESIÓN</a></div>
+                                        <div class="text-6xl mb-2 text-[#b91c1c] letra "><a href="{{ url('/login') }}">INICIA TU SESIÓN</a></div>
                                         <p class="text-lg py-4">
-                                            <button class="bg-[#5b21b6] hover:bg-blue-700 text-[#fde047] font-bold py-2 px-4 rounded">
+                                            <button class="bg-[#581c87] hover:bg-blue-700 text-[#fde047] font-bold py-2 px-4 rounded textindfo">
                                                 <a href="{{ url('/register') }}">REGISTRATE</a>
                                             </button>
                                         </p>
