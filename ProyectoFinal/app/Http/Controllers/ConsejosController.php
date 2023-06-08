@@ -9,6 +9,8 @@ use App\Models\Semestres;
 use App\Models\Consejos;
 use App\Models\User;
 use App\Models\Descripcionprofes;
+use App\Models\Etiquetas;
+use App\Models\Detalle_etiquetas;
 
 class ConsejosController extends Controller
 {
@@ -48,6 +50,12 @@ class ConsejosController extends Controller
                 'titulo' => 'required|max:500|regex:/^[\pL\s\-]+$/u',
                 'descripcion' => 'required|max:9000',
             ]);
+            $etiquetas =  $request->etiqueta;
+            $oculto = [];
+            foreach ($etiquetas as $etic) {
+                $etieutaname = Etiquetas::where('idetiqueta', $etic)->first();
+                $oculto[] = $etieutaname['genero'];
+            }
 
             $nuevo = new Consejos;
             $nuevo->id_user = Auth()->user()->id;
@@ -57,13 +65,29 @@ class ConsejosController extends Controller
             $nuevo->titulo = $request->titulo;
             $nuevo->descripcion = $request->descripcion;
             $nuevo->activo = 1;
+            $nuevo->etiquet = implode(",", $oculto);
             $nuevo->save();
+            $nuevoidcobsejo = $nuevo->id;
+            foreach ($etiquetas as $etic) {
+                $new = new Detalle_etiquetas;
+                $new->id_consejo = $nuevoidcobsejo;
+                $new->id_etiqueta  = $etic;
+                $new->save();
+            }
+
             return redirect('/escribeunconsejo')->with('message', 'Datos insertados con exito, consejo nuevo creado');
         } else {
             $this->validate($request, [
                 'titulo' => 'required|max:500|regex:/^[\pL\s\-]+$/u',
                 'descripcion' => 'required|max:9000',
             ]);
+
+            $etiquetas =  $request->etiqueta;
+            $oculto = [];
+            foreach ($etiquetas as $etic) {
+                $etieutaname = Etiquetas::where('idetiqueta', $etic)->first();
+                $oculto[] = $etieutaname['genero'];
+            }
 
             $nuevo = new Consejos;
             $nuevo->id_user = Auth()->user()->id;
@@ -72,7 +96,16 @@ class ConsejosController extends Controller
             $nuevo->id_profesor = $request->profesor;
             $nuevo->titulo = $request->titulo;
             $nuevo->descripcion = $request->descripcion;
+            $nuevo->etiquet = implode(",", $oculto);
             $nuevo->save();
+            $nuevoidcobsejo = $nuevo->id;
+            foreach ($etiquetas as $etic) {
+                $new = new Detalle_etiquetas;
+                $new->id_consejo = $nuevoidcobsejo;
+                $new->id_etiqueta  = $etic;
+                $new->save();
+            }
+
             return redirect('/escribeunconsejo')->with('message', 'Datos insertados con exito, esperar respuesta del moderador');
         }
     }
@@ -113,6 +146,13 @@ class ConsejosController extends Controller
             'descripcion' => 'required|max:9000',
         ]);
 
+        $etiquetas =  $request->etiqueta;
+        $oculto = [];
+        foreach ($etiquetas as $etic) {
+            $etieutaname = Etiquetas::where('idetiqueta', $etic)->first();
+            $oculto[] = $etieutaname['genero'];
+        }
+
         $materia = $request->materias;
         $semestre =  $request->semestres;
         $profesor = $request->profesor;
@@ -122,6 +162,7 @@ class ConsejosController extends Controller
         $userb = User::with('roles')->where('id', Auth()->user()->id)->first();
         $role = $userb->roles->first()->name;
 
+
         if ($role == 'Admin') {
             Consejos::where('idconsejo',  $request->idconsejo)
                 ->update([
@@ -130,8 +171,18 @@ class ConsejosController extends Controller
                     'id_semestre' => $semestre,
                     'id_profesor' => $profesor,
                     'titulo' => $titulo,
-                    'descripcion' => $descripcion
+                    'descripcion' => $descripcion,
+                    'etiquet' => implode(",", $oculto)
                 ]);
+            $nuevoidcobsejo = $request->idconsejo;
+            $eliminar = Detalle_etiquetas::where('id_consejo', $nuevoidcobsejo);
+            $eliminar->delete();
+            foreach ($etiquetas as $etic) {
+                $new = new Detalle_etiquetas;
+                $new->id_consejo = $nuevoidcobsejo;
+                $new->id_etiqueta  = $etic;
+                $new->save();
+            }
             return redirect('/consejosgenral')->with('message', 'Datos del consejo numero ' . $request->idconsejo . ' actulizado con exito');
         } else {
             Consejos::where('idconsejo',  $request->idconsejo)
@@ -141,8 +192,19 @@ class ConsejosController extends Controller
                     'id_semestre' => $semestre,
                     'id_profesor' => $profesor,
                     'titulo' => $titulo,
-                    'descripcion' => $descripcion
+                    'descripcion' => $descripcion,
+                    'etiquet' => implode(",", $oculto)
                 ]);
+            $nuevoidcobsejo = $request->idconsejo;
+            $eliminar = Detalle_etiquetas::where('id_consejo', $nuevoidcobsejo);
+            $eliminar->delete();
+            $etiquetas =  $request->etiqueta;
+            foreach ($etiquetas as $etic) {
+                $new = new Detalle_etiquetas;
+                $new->id_consejo = $nuevoidcobsejo;
+                $new->id_etiqueta  = $etic;
+                $new->save();
+            }
             return redirect('/misconsejos')->with('message', 'Datos del consejo numero' . $request->idconsejo . ' actulizado, espere respuesta del moderador');
         }
     }
@@ -166,7 +228,13 @@ class ConsejosController extends Controller
             ->join('materias', 'id_materia', '=', 'materias.id')
             ->where('activo', $activo)
             ->paginate(3);
-        return view('layouts.manualdeconsejosvista', ['consejos' => $consejos]);
+
+        $etiquetas = Consejos::join('detalle_etiquetas', 'idconsejo', '=', 'detalle_etiquetas.id_consejo')
+            ->join('etiquetas', 'detalle_etiquetas.id_etiqueta', '=', 'etiquetas.idetiqueta')
+            ->where('activo', $activo)
+            ->get();
+
+        return view('layouts.manualdeconsejosvista', ['consejos' => $consejos, 'etiquetas' => $etiquetas]);
     }
     public function searchconsejosvista(Request $request)
     {
@@ -178,7 +246,30 @@ class ConsejosController extends Controller
             ->where('activo', $activo)
             ->where('titulo', 'like', '%' . $texto . '%')
             ->paginate(3);
-        return view('layouts.manualdeconsejosvista', ['consejos' => $consejos]);
+
+        $etiquetas = Consejos::join('detalle_etiquetas', 'idconsejo', '=', 'detalle_etiquetas.id_consejo')
+            ->join('etiquetas', 'detalle_etiquetas.id_etiqueta', '=', 'etiquetas.idetiqueta')
+            ->where('activo', $activo)
+            ->get();
+        return view('layouts.manualdeconsejosvista', ['consejos' => $consejos, 'etiquetas' => $etiquetas]);
+    }
+    public function searchconsejosvista2(Request $request)
+    {
+        $texto = trim($request->get('texto'));
+        $activo = 1;
+        $consejos = Consejos::join('profesores', 'id_profesor', '=', 'profesores.id')
+            ->join('semestres', 'id_semestre', '=', 'semestres.id')
+            ->join('materias', 'id_materia', '=', 'materias.id')
+            ->where('activo', $activo)
+            ->where('etiquet', 'like', '%' . $texto . '%')
+            ->paginate(3);
+
+        $etiquetas = Consejos::join('detalle_etiquetas', 'idconsejo', '=', 'detalle_etiquetas.id_consejo')
+            ->join('etiquetas', 'detalle_etiquetas.id_etiqueta', '=', 'etiquetas.idetiqueta')
+            ->where('activo', $activo)
+            ->get();
+
+        return view('layouts.manualdeconsejosvista', ['consejos' => $consejos, 'etiquetas' => $etiquetas]);
     }
 
     public function mostrarsolounconsejo($id_consejo)
@@ -188,7 +279,8 @@ class ConsejosController extends Controller
             ->join('materias', 'id_materia', '=', 'materias.id')
             ->where('idconsejo', $id_consejo)
             ->first();
-        return view('layouts.mostrarsolouno', compact('consejos'));
+        $etiquetas = Detalle_etiquetas::join('etiquetas', 'id_etiqueta', '=', 'etiquetas.idetiqueta')->where('id_consejo', $id_consejo)->get();
+        return view('layouts.mostrarsolouno', compact('consejos', 'etiquetas'));
     }
 
     public function solicitudes()
@@ -200,7 +292,7 @@ class ConsejosController extends Controller
             ->join('users', 'id_user', '=', 'users.id')
             ->where('activo', $activo)
             //->where('id_user', Auth()->user()->id)
-            ->paginate(6);
+            ->paginate(5);
         return view('layouts.solicitudes', compact('consejos'));
     }
 
@@ -249,11 +341,18 @@ class ConsejosController extends Controller
             ->where('idconsejo', $id_consejo)
             ->first();
 
+        $etiquetas2 = Detalle_etiquetas::where('id_consejo', $id_consejo)->get();
+        $etiquetas = array();
+        foreach ($etiquetas2 as $permisoAsignado) {
+            $etiquetas[$permisoAsignado['id_etiqueta']] = true;
+        }
+
         $meta = Materias::all()->where('id_semestre', $consejos->id_semestre);
         $ens = Profesores::all();
         $sem = Semestres::all();
+        $etiqueta = Etiquetas::all();
 
-        return view('layouts.updateescribeconsejo', ['consejos' => $consejos, 'profes' => $ens, 'semestre' => $sem, 'meta' => $meta]);
+        return view('layouts.updateescribeconsejo', ['consejos' => $consejos, 'profes' => $ens, 'semestre' => $sem, 'meta' => $meta, 'etiquet' => $etiqueta, 'etikguar' => $etiquetas]);
     }
 
     public function generalconsejos()

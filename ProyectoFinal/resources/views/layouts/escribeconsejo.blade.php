@@ -1,13 +1,13 @@
 <x-app-layout>
     <div class=" py-4 max-w-12xl mx-auto py-2 px-4 sm:px-6 lg:px-8  bg-[#4dbdb0]">
-        <h5 class="text-7xl text-[#f8fafc] letra">
+        <h5 class="text-7xl text-[#f8fafc] titulocards">
             {{ __('ESCRIBIR CONSEJO') }}
         </h5>
     </div>
     @livewireStyles
-    <div class="py-12">
-        <div class="py-6">
-            <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-8">
+        <div class="py-2">
+            <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 animate__animated animate__fadeIn">
                 @if ($errors->any())
                 <div>
                     <ul>
@@ -31,36 +31,35 @@
                 @endif
                 <form action="{{ route('store') }}" method="POST" class="nuevoconsejo py-2">
                     @csrf
-                    <div class="bg-[#fffcbf] overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="bg-[#fffcbf] overflow-hidden shadow-sm rounded-lg px-4 py-4 ">
                         <div class="p-6 text-gray-900">
                             <!-- Contact Me -->
                             <div class="flex -mx-3">
                                 <div class="w-full px-3 mb-5">
-                                    <label for="" class="text-base text-[#b91c1c] font-semibold px-1 ">Escribe un buen titulo para tu consejo:</label>
+                                    <label for="" class="text-base text-[#b91c1c] px-1  textindfo">Escribe un buen titulo para tu consejo:</label>
                                     <div class="flex">
                                         <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                        <input type="" name="titulo" id="titulo" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Acordeon para examen de danice v:">
+                                        <input type="" name="titulo" id="titulo" class="w-full -ml-10 pl-10 pr-3 textindfo py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Escribe un buen titulo para su consejo v:">
                                     </div>
                                 </div>
                             </div>
                             <div class="flex -mx-3">
                                 <div class="w-1/2 px-3 mb-5">
-                                    <label for="" class="text-base text-[#b91c1c] font-semibold px-1">Semestre:</label>
-                                    <select id="semestres" name="semestres" class="rounded-lg  block w-full rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+                                    <label for="" class="text-base text-[#b91c1c] textindfo px-1 textindfo">Semestre:</label>
+                                    <select id="semestres" name="semestres" class="rounded-lg textindfo block w-full rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
                                         <option selected>Seleccionar un semestre:</option>
                                         @foreach ( $semestre as $sem)
                                         <option value="{{$sem['id']}}">{{$sem['nombre']}}</option>
                                         @endforeach
                                     </select>
-
                                     <div class="xd">
-                                        <label for="" class="text-base text-[#b91c1c] font-semibold px-1">Materia:</label>
-                                        <select id="materias" name="materias" class="rounded-lg  block w-full rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+                                        <label for="" class="text-base text-[#b91c1c] textindfo px-1">Materia:</label>
+                                        <select id="materias" name="materias" class="rounded-lg textindfo block w-full rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
                                         </select>
                                     </div>
                                     <div>
-                                        <label for="" class="text-base text-[#b91c1c] font-semibold px-1">Profesor:</label>
-                                        <select id="profesor" name="profesor" class="rounded-lg  block w-full rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+                                        <label for="" class="text-base text-[#b91c1c] textindfo px-1">Profesor:</label>
+                                        <select id="profesor" name="profesor" class="rounded-lg textindfo block w-full rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
                                             <option selected>Seleccionar un profesor:</option>
                                             @foreach ( $profes as $prof)
                                             <option value="{{$prof['id']}}">{{$prof['nombree']}}</option>
@@ -69,11 +68,22 @@
                                     </div>
                                 </div>
                                 <div class="w-1/2 px-3 mb-5">
-                                    <label for="" class="text-base text-[#b91c1c] font-semibold px-1">Escribe tu consejo:</label>
+                                    <label for="" class="text-base text-[#b91c1c] textindfo px-1">Escribe tu consejo:</label>
                                     <div class="flex py-2">
-                                        <textarea name="descripcion" id="descripcion" class=" min-h-[170px] block w-full rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"></textarea>
+                                        <textarea name="descripcion" id="descripcion" class="textindfo min-h-[170px] block w-full rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"></textarea>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="w-6/2 px-3 mb-5">
+                                <label for="" class="text-base text-[#b91c1c] textindfo px-1">Etiqueta:</label>
+                                <p class="flex">
+                                    @foreach ( $etiquet as $etic)
+                                    <label class="py-2 px-2">
+                                        <input name="etiqueta[]" id="etiqueta[]" type="checkbox" class="filled-in " value="{{$etic['idetiqueta']}}" />
+                                        <span class="text-base text-[#78716c] px-1 textindfo">{{$etic['genero']}}</span>
+                                    </label>
+                                    @endforeach
+                                </p>
                             </div>
                         </div>
                     </div>

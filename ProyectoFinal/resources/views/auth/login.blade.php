@@ -1,5 +1,23 @@
+<head>
+    <!-- Compiled and minified JavaScript -->
+    <link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sniglet&display=swap" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
+
+        .titulocards{
+            font-family: 'Covered By Your Grace', cursive;
+        }
+        .subtitulos{
+            font-family: 'Sniglet', cursive;
+        }
+    </style>
+</head>
+
 <x-guest-layout class="">
-    <h1 class="fill-current text-center text-[#ef4444]  letra text-4xl  py-12">INICIA TU SESIÓN</h1>
+    <h1 class="fill-current text-center text-[#FC2947]  titulocards text-5xl  py-12">INICIA TU SESIÓN</h1>
     <!-- Session Status -->
     <x-auth-session-status :status="session('status')" />
 

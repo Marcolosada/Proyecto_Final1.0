@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class=" py-4 max-w-12xl mx-auto py-2 px-4 sm:px-6 lg:px-8  bg-[#fef08a]">
-        <h5 class="text-7xl text-[#f8fafc] letra">
+        <h5 class="text-7xl text-[#f8fafc] titulocards">
             {{ __('CONSEJOS') }}
         </h5>
     </div>

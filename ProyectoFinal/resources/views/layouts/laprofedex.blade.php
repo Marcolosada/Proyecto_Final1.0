@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class=" py-4 max-w-12xl mx-auto py-2 px-4 sm:px-6 lg:px-8  bg-[#fc2947]">
-        <h5 class="text-7xl text-[#ffffff] letra">
+        <h5 class="text-7xl text-[#ffffff] titulocards">
             {{ __('LA PROFEDEX') }}
         </h5>
     </div>

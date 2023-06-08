@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Consejos ISC</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -20,6 +20,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sniglet&display=swap" rel="stylesheet">
 
     <style>
         .imagendefondo {
@@ -32,6 +35,8 @@
 
         @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Tangerine&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Tangerine&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
 
         .letra {
             font-family: 'Carter One', cursive;
@@ -39,6 +44,26 @@
 
         .textindfo {
             font-family: 'Tangerine', cursive;
+        }
+
+        .imagen2 {
+            transform: scale(var(--escala, 1));
+            transition: transform 0.25s;
+        }
+
+        .imagen2:hover {
+            --escala: 1.1;
+            cursor: pointer;
+            border-style: solid;
+            border-color: #71717a;
+            opacity: 1;
+            background-color: #d1d5db;
+        }
+        .titulocards{
+            font-family: 'Covered By Your Grace', cursive;
+        }
+        .subtitulos{
+            font-family: 'Sniglet', cursive;
         }
     </style>
 

@@ -1,4 +1,4 @@
-<div class="row px-6">
+<div class="row px-6 animate__animated animate__fadeIn">
     @if(Session::has('message'))
     <div class="alert bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
         <div class="flex">
@@ -16,7 +16,7 @@
             <div class="border-4 border-black py-2 px-2 rounded-[30px] shadow-lg">
                 <div class="rounded-[30px] overflow-hidden shadow-lg py-4 bg-[#eaebec] opacity-90 border-4 border-black">
                     <div class="px-6 py-4">
-                        <div class="text-6xl mb-2 text-[#FC2947] letra"><a href="/manualdeconsejos">EL<br> MANUAL</a></div>
+                        <div class="text-6xl mb-2 text-[#FC2947] titulocards"><a href="/manualdeconsejos">EL<br> MANUAL</a></div>
                         <p class="text-[#FC2947] text-lg textindfo">
                             Lee los megores consegos e supervivencia y hazte con el conocimiento imilitado!
                             conocimiento ilimitado!
@@ -29,7 +29,7 @@
             <div class="border-4 border-black py-2 px-2 rounded-[30px] shadow-lg">
                 <div class="rounded-[30px] overflow-hidden shadow-lg py-4 bg-[#ededd9] opacity-90 border-4 border-black">
                     <div class="px-6 py-4">
-                        <div class="text-6xl mb-2 text-[#FC2947] letra"><a href="/escribeunconsejo">Escribir consejo</a></div>
+                        <div class="text-6xl mb-2 text-[#FC2947] titulocards"><a href="/escribeunconsejo">ESCRIBIR<br> CONSEJO</a></div>
                         <p class="text-[#FC2947] text-lg textindfo">
                             Enriquece nuestro humilde manual
                             con tu sabiduria.
@@ -45,7 +45,7 @@
             <div class="border-4 border-black py-2 px-2 rounded-[30px] shadow-lg">
                 <div class="rounded-[30px] overflow-hidden shadow-lg py-4 bg-[#eadfed] opacity-90 border-4 border-black">
                     <div class="px-6 py-4">
-                        <div class="letra text-6xl mb-2 text-[#FC2947]"><a href="/laprofedex">LA <br>PROFEDEX</a></div>
+                        <div class="titulocards text-6xl mb-2 text-[#FC2947]"><a href="/laprofedex">LA <br>PROFEDEX</a></div>
                         <p class="text-[#FC2947] text-lg textindfo">
                             Conoce las especies de profes a traves de as opiniones de la comunidad.
                         </p>
@@ -57,7 +57,7 @@
             <div class="border-4 border-black py-2 px-2 rounded-[30px] shadow-lg">
                 <div class="rounded-[30px] overflow-hidden shadow-lg py-4 bg-[#bad2d3] opacity-90 border-4 border-black">
                     <div class="px-6 py-4">
-                        <div class="letra text-6xl mb-2 text-[#FC2947]"><a href="/misconsejos">MIS <br>CONSEJOS</a></div>
+                        <div class="titulocards text-6xl mb-2 text-[#FC2947]"><a href="/misconsejos">MIS <br>CONSEJOS</a></div>
                         <p class="text-[#FC2947] text-lg textindfo">
                             Te olvidaste de algo? Revisa o modifica
                             tus propios consejos.

@@ -42,6 +42,7 @@ Route::get('/manualdeconsejos', [ConsejosController::class, 'manualdeconsejosvis
 })->name('manualdeconsejosvista');
 
 Route::get('/search', [ConsejosController::class, 'searchconsejosvista'])->name('searchconsejosvista');
+Route::get('/searchetiqueta', [ConsejosController::class, 'searchconsejosvista2'])->name('searchconsejosvista2');
 
 Route::get('/utils/{id}', [EscuelaController::class, 'materias'])->name('materias');
 

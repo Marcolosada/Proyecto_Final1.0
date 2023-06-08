@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Profesores;
 use App\Models\Semestres;
 use App\Models\Materias;
+use App\Models\Etiquetas;
 
 class EscuelaController extends Controller
 {
@@ -13,7 +14,8 @@ class EscuelaController extends Controller
     {
         $ens = Profesores::all();
         $sem = Semestres::all();
-        return view('layouts.escribeconsejo', ['profes' => $ens, 'semestre' => $sem]);
+        $etiqueta = Etiquetas::all();
+        return view('layouts.escribeconsejo', ['profes' => $ens, 'semestre' => $sem, 'etiquet' => $etiqueta]);
     }
 
     public function materias($id)

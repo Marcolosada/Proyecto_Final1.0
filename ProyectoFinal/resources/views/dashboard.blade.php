@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-[#dbd200] leading-tight text-Tangerine">
-            {{ __('El Manual de Supervivencia de ISC') }}
+            {{ __('EL MANUAL DE SUPERVIVENCIA DE ISC') }}
         </h2>
     </x-slot>
     @livewireStyles

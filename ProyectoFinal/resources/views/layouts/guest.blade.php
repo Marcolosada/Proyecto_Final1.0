@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     <style>
         .imagendefondo {
@@ -36,11 +37,11 @@
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 imagendefondo ">
         <div>
             <a href="/">
-                <p class="w-20 h-20  text-gray-500  border-4 border-[#57534e] text-center rounded-[10px]"><br>Logo</p>
+                <p class="w-20 h-20  text-gray-500  border-4 border-[#57534e] text-center rounded-[10px]"><img src="https://lh3.googleusercontent.com/pw/AJFCJaXzC7eqWIf4Z9Do4yxPcxnToTHOuKMvTPvLAb_2JAN4yYqd1OKXfwMTtFH4MtVUMGfJUb9RsSaert2lnD3COMQULrAsOTdSJBMaBFzHcmGViUhGTcLw1nsDCpYyxEfD9fELGV7LagqMtcArH2P76XZn=w500-h500-s-no?authuser=0" alt=""></p>
             </a>
         </div>
 
-        <div class="w-full sm:max-w-md mt-6 px-6 py-6 bg-[#f9fafb] shadow-md overflow-hidden border-4 border-black py-2 px-2 rounded-[50px]">
+        <div class="w-full sm:max-w-md mt-6 px-6 py-6 bg-[#f9fafb] shadow-md overflow-hidden border-4 border-black py-2 px-2 rounded-[50px] animate__bounceIn">
 
             {{ $slot }}
         </div>
