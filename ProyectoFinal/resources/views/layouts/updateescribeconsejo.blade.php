@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class=" py-4 max-w-12xl mx-auto py-2 px-4 sm:px-6 lg:px-8  bg-[#4dbdb0]">
         <h5 class="text-7xl text-[#f8fafc] letra">
-            {{ __('ESCRIBIR CONSEJO') }}
+            {{ __('ACTULIZAR CONSEJO') }}
         </h5>
     </div>
     @livewireStyles
@@ -29,9 +29,10 @@
                     </div>
                 </div>
                 @endif
-                <form action="{{ route('store') }}" method="POST" class="nuevoconsejo py-2">
+                <form action="{{ route('update')}}" method="POST" class="nuevoconsejo py-2">
                     @csrf
                     <div class="bg-[#fffcbf] overflow-hidden shadow-sm sm:rounded-lg">
+                        <input type="hidden" name="idconsejo" id="idconsejo" value="{{$consejos->idconsejo}}">
                         <div class="p-6 text-gray-900">
                             <!-- Contact Me -->
                             <div class="flex -mx-3">
@@ -39,7 +40,7 @@
                                     <label for="" class="text-base text-[#b91c1c] font-semibold px-1 ">Escribe un buen titulo para tu consejo:</label>
                                     <div class="flex">
                                         <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                        <input type="" name="titulo" id="titulo" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Acordeon para examen de danice v:">
+                                        <input type="" name="titulo" id="titulo" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" value="{{$consejos->titulo}}" placeholder="Acordeon para examen de danice v:">
                                     </div>
                                 </div>
                             </div>
@@ -49,13 +50,17 @@
                                     <select id="semestres" name="semestres" class="rounded-lg  block w-full rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
                                         <option selected>Seleccionar un semestre:</option>
                                         @foreach ( $semestre as $sem)
-                                        <option value="{{$sem['id']}}">{{$sem['nombre']}}</option>
+                                        <option value="{{$sem['id']}}" @if( $sem['id']==$consejos->id_semestre ) selected @endif >{{$sem['nombre']}}</option>
                                         @endforeach
                                     </select>
 
                                     <div class="xd">
                                         <label for="" class="text-base text-[#b91c1c] font-semibold px-1">Materia:</label>
                                         <select id="materias" name="materias" class="rounded-lg  block w-full rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+                                            <option selected>Seleccionar materia:</option>
+                                            @foreach ( $meta as $meta)
+                                            <option value="{{$meta['id']}}" @if( $meta['id']==$consejos->id_materia ) selected @endif >{{$meta['namee']}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div>
@@ -63,7 +68,7 @@
                                         <select id="profesor" name="profesor" class="rounded-lg  block w-full rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
                                             <option selected>Seleccionar un profesor:</option>
                                             @foreach ( $profes as $prof)
-                                            <option value="{{$prof['id']}}">{{$prof['nombree']}}</option>
+                                            <option value="{{$prof['id']}}" @if( $prof['id']==$consejos->id_profesor ) selected @endif >{{$prof['nombree']}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -71,7 +76,7 @@
                                 <div class="w-1/2 px-3 mb-5">
                                     <label for="" class="text-base text-[#b91c1c] font-semibold px-1">Escribe tu consejo:</label>
                                     <div class="flex py-2">
-                                        <textarea name="descripcion" id="descripcion" class=" min-h-[170px] block w-full rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"></textarea>
+                                        <textarea name="descripcion" id="descripcion" class=" min-h-[170px] block w-full rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">{{$consejos->descripcion}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -81,10 +86,10 @@
                         <div class="p-6 text-gray-900">
                             <div class="flex -mx-3">
                                 <div class="w-full px-3 mb-5">
-                                    <a href="/dashboard" class="text-center block w-full max-w-xs mx-auto bg-[#ff4d00] hover:bg-[#d4d4d4] focus:bg-[#d4d4d4] text-white rounded-lg px-3 py-3 font-semibold">Volver al menu</a>
+                                    <a href="/misconsejos" class="text-center block w-full max-w-xs mx-auto bg-[#ff4d00] hover:bg-[#d4d4d4] focus:bg-[#d4d4d4] text-white rounded-lg px-3 py-3 font-semibold">Volver</a>
                                 </div>
                                 <div class="w-full px-3 mb-5 ">
-                                    <button type="submit" class="block w-full max-w-xs mx-auto bg-[#d4d4d4] hover:bg-[#4d7c0f] focus:bg-[#4d7c0f] text-white rounded-lg px-3 py-3 font-semibold">Enviar</button>
+                                    <button type="submit" class="block w-full max-w-xs mx-auto bg-[#d4d4d4] hover:bg-[#4d7c0f] focus:bg-[#4d7c0f] text-white rounded-lg px-3 py-3 font-semibold">Guardar</button>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +106,7 @@
         $('.nuevoconsejo').submit(function(e) {
             e.preventDefault();
             Swal.fire({
-                title: '¿Estás seguro de enviar su consejo?',
+                title: '¿Estás seguro de actulizar su consejo?',
                 imageUrl: 'https://lh3.googleusercontent.com/pw/AJFCJaUMBrcC_E9q-4cfn5vbNjeYm3X2utGKN4VMuZ-QVdkOpgUebFAY6BJguYSuS23pyCr6xwKzq66l6dk3mNLqIER5MF7r0WZYTr57D8n_EmG1W1WgZfhih_Dtb3dPgTB8u1f6HgKwAcAMqiFMr6jU1xst=w480-h360-s-no?authuser=0',
                 text: "¡No podrás revertir esto!",
                 showCancelButton: true,
@@ -117,8 +122,8 @@
         });
 
         $(document).ready(function() {
-            $("#materias").hide();
-            $(".xd").hide();
+            //$("#materias").hide();
+            //$(".xd").hide();
             $("#semestres").change(function() {
                 var valida = document.getElementById('semestres').value;
                 cargamaterias(valida);

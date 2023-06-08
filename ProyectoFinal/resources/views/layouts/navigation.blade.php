@@ -27,10 +27,10 @@
                     <x-nav-link class="text-white" :href="route('escribeunconsejo')" :active="request()->routeIs('escribeunconsejo')">
                         {{ __('Postear') }}
                     </x-nav-link>
-                    <x-nav-link class="text-white" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link class="text-white" :href="route('solicitudes')" :active="request()->routeIs('solicitudes')">
                         {{ __('Solicitudes') }}
                     </x-nav-link>
-                    <x-nav-link class="text-white" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link class="text-white" :href="route('generalconsejos')" :active="request()->routeIs('generalconsejos')">
                         {{ __('Consejos') }}
                     </x-nav-link>
                     @endif
@@ -41,7 +41,7 @@
                     <x-nav-link class="text-white" :href="route('escribeunconsejo')" :active="request()->routeIs('escribeunconsejo')">
                         {{ __('Postear') }}
                     </x-nav-link>
-                    <x-nav-link class="text-white" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link class="text-white" :href="route('solicitudes')" :active="request()->routeIs('solicitudes')">
                         {{ __('Solicitudes') }}
                     </x-nav-link>
                     @endif

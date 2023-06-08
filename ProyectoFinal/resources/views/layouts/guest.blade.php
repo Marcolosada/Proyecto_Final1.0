@@ -22,8 +22,7 @@
             background-size: cover;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Tangerine&display=swap');*/
-        @import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Tangerine&display=swap');
 
         .letra {
             font-family: 'Carter One', cursive;
