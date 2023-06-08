@@ -12,7 +12,6 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                sans: ['Covered By Your Grace', ...defaultTheme.fontFamily.sans],
             },
         },
     },
